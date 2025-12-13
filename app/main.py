@@ -10,14 +10,12 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = settings.SECRET_KEY
 
-    # <-- FIX CORS -->
     CORS(
         app,
         resources={r"/api/*": {"origins": "*"}},
         supports_credentials=False,
     )
 
-    # register all blueprints
     app.register_blueprint(rec_bp, url_prefix="/api")
     app.register_blueprint(geo_bp, url_prefix="/api")
     app.register_blueprint(test_llm_bp, url_prefix="/api")
@@ -28,11 +26,8 @@ def create_app():
 
     return app
 
+app = create_app()
+
 
 if __name__ == "__main__":
-    app = create_app()
     app.run(host="0.0.0.0", port=8000, debug=True)
-
-
-
-
