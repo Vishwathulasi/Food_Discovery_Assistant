@@ -12,7 +12,6 @@ from app.services.geopy_service import distance_meters, geocode_text_location
 from app.services.scoring_pipeline import rank_places
 from app.services.response_formatter import format_recommendation_list
 # from app.llm.gemini_client import generate_final_response_with_gemini
-from app.core.mongo_client import save_query_log
 
 from app.services.review_boost_service import re_rank_with_reviews
 
@@ -210,16 +209,6 @@ def recommend():
     # ---------------------------------------------------
     # 7. Logging (non-critical)
     # ---------------------------------------------------
-    try:
-        save_query_log(
-            {
-                "query": req.query,
-                "attrs": attrs,
-                "count_results": len(ranked),
-            }
-        )
-    except Exception:
-        pass
 
     # ---------------------------------------------------
     # 8. Final Response Build
@@ -256,3 +245,4 @@ def recommend():
             message=msg,
         ).dict()
     ), 200
+
