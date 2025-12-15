@@ -15,12 +15,12 @@ def _select_intro(attributes: Dict[str, Any]) -> str:
 
     if mood:
         MOOD_TEMPLATES = {
-            "comfort food": "Sounds like you need something warm and comforting today. Here are some cozy picks:",
-            "sad": "Rough day? Here are some comforting food options to lift your mood:",
-            "tired": "You must be exhausted — here are some easy, soothing meals nearby:",
+            "comfort food": "Sounds like you need something warm and comforting today. Since South Indian foods are light weight I am recommending South Indian Restaurants for you. Here are some cozy picks:",
+            "sad": "Rough day? may be South Indian foods suits you well as this makes you fresh as they are light weight foods. Here are some comforting food options to lift your mood: ",
+            "tired": "You must be exhausted may be South Indian foods suits you well as this makes you fresh as they are light weight foods.here are some easy, soothing meals nearby: ",
             "celebration": "Nice! Here are some places perfect for a celebration:",
             "hangout": "Looking for a chill hangout spot? Try these:",
-            "spicy craving": "Craving something spicy? These places should hit the spot!",
+            "spicy craving": "Craving something spicy? These places should hit the spot! chineese, north indian foods are more spicier and suits your mood well",
         }
         for key, text in MOOD_TEMPLATES.items():
             if key in mood:
@@ -93,13 +93,11 @@ def _build_global_explanation(attributes: Dict[str, Any], recommendations: List[
     if dish_fallback and not (fallback_type == "cuisine_family_fallback" and dish_text and inferred_cuisine):
         if dish_text and inferred_cuisine:
             parts.append(
-                f"I couldn't find places that explicitly mention {dish_text}, "
                 f"so I'm showing well-rated {inferred_cuisine} options where you're likely to get it."
             )
         else:
             dish_label = dish_text or raw_query
             parts.append(
-                f"I also couldn't find places that explicitly mention **{dish_label}**, "
                 "so these are the best matches based on cuisine, style and reviews."
             )
 
